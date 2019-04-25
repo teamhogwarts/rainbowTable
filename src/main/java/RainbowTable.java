@@ -8,6 +8,10 @@ public class RainbowTable {
 
         ReductionFunction reductionFunction = new ReductionFunction(7);
         String result = reductionFunction.executeReductionFunction(hashValue,0);
+        hashValue = MD5(result);
+         result = reductionFunction.executeReductionFunction(hashValue,1);
+        hashValue = MD5(result);
+        result = reductionFunction.executeReductionFunction(hashValue,2);
         System.out.println(result);
 
     }
