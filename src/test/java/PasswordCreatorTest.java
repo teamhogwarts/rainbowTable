@@ -8,11 +8,11 @@ class PasswordCreatorTest {
 
     @Test
     void generatePasswords() {
-        PasswordCreator pwCreator = new PasswordCreator(4);
+        PasswordCreator pwCreator = new PasswordCreator(7);
 
-        System.out.println(35<<35);
+//        System.out.println(38 / 36 % 36);
 
-        pwCreator.generatePasswords(50_000);
+        pwCreator.generatePasswords(100);
 
         pwCreator.getPasswords();
 

@@ -29,16 +29,34 @@ public class PasswordCreator {
 
         char[] allChars = new char[passwordLength];
 
-            for (int i = 1; i <= amount; i++) {
-                allChars[3] = z[i%sizeZ];
-                allChars[2] = z[i/sizeZ%sizeZ ];
-                allChars[1] = z[i/(sizeZ*sizeZ)%sizeZ];
-                allChars[0] = z[i/(sizeZ*sizeZ*sizeZ)%sizeZ];
-                System.out.println(i + " = " + Arrays.toString(allChars));
-            }
+//        System.out.println("TEST: " + inSizeValue(1,36*3));
+        String allKeys = "";
+
+        for (int i = 0; i <= amount; i++) {
+            allChars[6] = z[i % sizeZ];
+            allChars[5] = z[i / sizeZ % sizeZ];
+            allChars[4] = z[i / (sizeZ * sizeZ) % sizeZ];
+            allChars[3] = z[i / (sizeZ * sizeZ * sizeZ) % sizeZ];
+            allChars[2] = z[i / (sizeZ * sizeZ * sizeZ * sizeZ) % sizeZ];
+            allChars[1] = z[i / (sizeZ * sizeZ * sizeZ * sizeZ * sizeZ) % sizeZ];
+            allChars[0] = z[i / (sizeZ * sizeZ * sizeZ * sizeZ * sizeZ * sizeZ ) % sizeZ];
+//            System.out.println(i + " = " + Arrays.toString(allChars));
+
+        }
     }
 
-
+//    private int inSizeValue(int index, int iteration) {
+//        int result = z.length;
+//        System.out.println(result);
+//
+//        for (int i = 0; i < index; i++) {
+//            result = result * result;
+//            System.out.println(result);
+//        }
+//        result = iteration / result;
+//        System.out.println(result);
+//        return result % z.length;
+//    }
 
     public Set<String> getPasswords() {
         return passwords;
