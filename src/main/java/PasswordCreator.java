@@ -22,27 +22,22 @@ public class PasswordCreator {
     }
 
     public void generatePasswords(int amount) {
-
-        String result = "";
-
         int sizeZ = z.length;
 
-        char[] allChars = new char[passwordLength];
-
-//        System.out.println("TEST: " + inSizeValue(1,36*3));
         String allKeys = "";
-
         for (int i = 0; i <= amount; i++) {
-            allChars[6] = z[i % sizeZ];
-            allChars[5] = z[i / sizeZ % sizeZ];
-            allChars[4] = z[i / (sizeZ * sizeZ) % sizeZ];
-            allChars[3] = z[i / (sizeZ * sizeZ * sizeZ) % sizeZ];
-            allChars[2] = z[i / (sizeZ * sizeZ * sizeZ * sizeZ) % sizeZ];
-            allChars[1] = z[i / (sizeZ * sizeZ * sizeZ * sizeZ * sizeZ) % sizeZ];
-            allChars[0] = z[i / (sizeZ * sizeZ * sizeZ * sizeZ * sizeZ * sizeZ ) % sizeZ];
-//            System.out.println(i + " = " + Arrays.toString(allChars));
-
+            allKeys += z[i / (sizeZ * sizeZ * sizeZ * sizeZ * sizeZ * sizeZ ) % sizeZ];
+            allKeys += z[i / (sizeZ * sizeZ * sizeZ * sizeZ * sizeZ) % sizeZ];
+            allKeys += z[i / (sizeZ * sizeZ * sizeZ * sizeZ) % sizeZ];
+            allKeys += z[i / (sizeZ * sizeZ * sizeZ) % sizeZ];
+            allKeys += z[i / (sizeZ * sizeZ) % sizeZ];
+            allKeys += z[i / sizeZ % sizeZ];
+            allKeys += z[i % sizeZ];
+            allKeys += "\n";
+//            if(i%500 == 0) System.out.println(i + " stelle = " + allKeys) ;
         }
+
+        System.out.println(allKeys);
     }
 
 //    private int inSizeValue(int index, int iteration) {
