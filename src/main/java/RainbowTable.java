@@ -45,6 +45,26 @@ public class RainbowTable {
     public BiMap<String, String> getRainbowTable() {
         return rainbowTable;
     }
+
+    public ReductionFunction getReductionFunction() {
+        return reductionFunction;
+    }
+
+    public HashFunction getHashFunction() {
+        return hashFunction;
+    }
+
+    public int getChainLength() {
+        return chainLength;
+    }
+
+    public int getPasswordAmount() {
+        return passwordAmount;
+    }
+
+    public PasswordCreator getPasswordCreator() {
+        return passwordCreator;
+    }
 }
 
 
