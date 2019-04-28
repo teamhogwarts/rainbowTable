@@ -33,8 +33,6 @@ public class PasswordCreator {
 
             this.passwords.add(passwordBuilder.toString());
         }
-
-        this.passwords.forEach(System.out::println);
     }
 
     private char calculateCharacter(int i, int sizeZ, int pow){

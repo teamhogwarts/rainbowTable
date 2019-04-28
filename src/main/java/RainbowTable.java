@@ -5,12 +5,14 @@ import java.security.NoSuchAlgorithmException;
 public class RainbowTable {
 
     private  int chainLength;
+    private  int passwordAmount;
     private BiMap<String, String> rainbowTable;
     private HashFunction hashFunction;
     private ReductionFunction reductionFunction;
     private PasswordCreator passwordCreator;
 
-    public RainbowTable(int chainLength, int passwordLength) {
+    public RainbowTable(int chainLength, int passwordLength, int passwordAmount) {
+        this.passwordAmount = passwordAmount;
         this.chainLength = chainLength;
         this.rainbowTable = HashBiMap.create();
         this.hashFunction = new HashFunction();
@@ -20,6 +22,7 @@ public class RainbowTable {
 
     public void initialize() throws NoSuchAlgorithmException {
         this.hashFunction.initializeMd5();
+        this.passwordCreator.generatePasswords(this.passwordAmount);
     }
 
     public void creaetRainbowTable(){
@@ -33,6 +36,7 @@ public class RainbowTable {
 
         for (int i = 0; i < this.chainLength; i++) {
             result = reductionFunction.executeReductionFunction(hashFunction.MD5(result), i);
+            System.out.println(result);
         }
 
         return result;
