@@ -6,7 +6,7 @@ import java.util.Collections;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        RainbowTable rainbowTable = new RainbowTable(4, 7, 4);
+        RainbowTable rainbowTable = new RainbowTable(3, 7, 3);
         rainbowTable.initialize();
 
         rainbowTable.creaetRainbowTable();

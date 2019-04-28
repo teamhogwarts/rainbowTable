@@ -38,10 +38,11 @@ public class SearchPassword {
 
         int counter = 0;
         while (counter < chainLength &&  !this.rainbowTable.getRainbowTable().containsValue(endValue)){
+            int test = chainLength - counter - 1;
             endValue = this.rainbowTable.getReductionFunction().executeReductionFunction(hashValue, chainLength - counter - 1);
 
             if (counter != 0){
-                for (int i = 1; i <= counter; i++) {
+                for (int i = counter; i > 0; i--) {
                     endValue = this.rainbowTable.getReductionFunction().executeReductionFunction(this.rainbowTable.getHashFunction().MD5(endValue), chainLength - i);
                 }
             }
@@ -49,7 +50,12 @@ public class SearchPassword {
             counter++;
         }
 
-        if(counter < chainLength){
+//        if(counter < chainLength){
+//            this.possibleEndValue = endValue;
+//            return true;
+//        }
+
+        if(this.rainbowTable.getRainbowTable().containsValue(endValue)){
             this.possibleEndValue = endValue;
             return true;
         }
