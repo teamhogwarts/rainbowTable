@@ -1,16 +1,14 @@
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class PasswordCreator {
 
     private int passwordLength;
-    private Set<String> passwords;
+    private SortedSet<String> passwords;
     private char[] z;
 
     public PasswordCreator(int passwordLength) {
         this.passwordLength = passwordLength;
-        this.passwords = new HashSet<>();
+        this.passwords = new TreeSet<>();
         initializePossiblePasswordCharacters();
     }
 
@@ -24,50 +22,26 @@ public class PasswordCreator {
     public void generatePasswords(int amount) {
         int sizeZ = z.length;
 
-        String allKeys = "";
+        StringBuilder passwordBuilder;
         for (int i = 0; i <= amount; i++) {
-            allKeys += z[i / (sizeZ * sizeZ * sizeZ * sizeZ * sizeZ * sizeZ ) % sizeZ];
-            allKeys += z[i / (sizeZ * sizeZ * sizeZ * sizeZ * sizeZ) % sizeZ];
-            allKeys += z[i / (sizeZ * sizeZ * sizeZ * sizeZ) % sizeZ];
-            allKeys += z[i / (sizeZ * sizeZ * sizeZ) % sizeZ];
-            allKeys += z[i / (sizeZ * sizeZ) % sizeZ];
-            allKeys += z[i / sizeZ % sizeZ];
-            allKeys += z[i % sizeZ];
-            allKeys += "\n";
-//            if(i%500 == 0) System.out.println(i + " stelle = " + allKeys) ;
+            passwordBuilder = new StringBuilder() ;
+
+            for (int j = this.passwordLength -1 ; j >= 0; j--){
+
+                passwordBuilder.append(calculateCharacter(i, sizeZ, j));
+            }
+
+            this.passwords.add(passwordBuilder.toString());
         }
 
-        System.out.println(allKeys);
+        this.passwords.forEach(System.out::println);
     }
 
-//    private int inSizeValue(int index, int iteration) {
-//        int result = z.length;
-//        System.out.println(result);
-//
-//        for (int i = 0; i < index; i++) {
-//            result = result * result;
-//            System.out.println(result);
-//        }
-//        result = iteration / result;
-//        System.out.println(result);
-//        return result % z.length;
-//    }
+    private char calculateCharacter(int i, int sizeZ, int pow){
+        return z[(i / (int) Math.pow(sizeZ, pow)) % sizeZ];
+    }
 
     public Set<String> getPasswords() {
         return passwords;
     }
-
-    //    private String passwordPermutation(int i) {
-//
-//        StringBuilder result = new StringBuilder();
-//        for (int j = 0; j < z.length; j++) {
-//            result.append(z[j]);
-//            while (result.length() < passwordLength) {
-//                result.append(0);
-//            }
-//
-//        }
-//
-//        return "";
-//    }
 }

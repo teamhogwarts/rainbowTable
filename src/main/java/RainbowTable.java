@@ -14,6 +14,9 @@ public class RainbowTable {
         result = reductionFunction.executeReductionFunction(hashValue, 2);
         System.out.println(result);
 
+        PasswordCreator passwordCreator = new PasswordCreator(7);
+        passwordCreator.getPasswords().forEach(System.out::println);
+
     }
 
     public static BigInteger MD5(String s) throws Exception {
