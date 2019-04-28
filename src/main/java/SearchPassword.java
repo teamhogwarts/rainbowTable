@@ -5,6 +5,8 @@ public class SearchPassword {
     private final String notFound = "NOT_FOUND";
    private RainbowTable rainbowTable;
    private String possibleEndValue;
+   private int amountOfRounds;
+   private String possiblePassword;
     // 1d56a37fb6b08aa709fe90e12ca59e12  // HashValue von Vogt
 
     public SearchPassword(RainbowTable rainbowTable) {
@@ -15,8 +17,25 @@ public class SearchPassword {
 //        if(!searchForEndValue(hashValue).equals(notFound)){
 //
 //        }
+        
+        if(!searchForEndValue(hashValue).equals(this.notFound)){
+            String startValue = this.rainbowTable.getRainbowTable().inverse().get(this.possibleEndValue);
+            this.possiblePassword = executeHashRoundFunction(startValue);
+        }
 
-        return searchForEndValue(hashValue);
+        // return searchForEndValue(hashValue);
+        
+        return possiblePassword == null ? this.notFound : this.possiblePassword;
+    }
+
+    private String executeHashRoundFunction(String startValue) {
+        String result = startValue;
+
+        for (int i = 0; i < this.amountOfRounds; i++) {
+           result = this.rainbowTable.getReductionFunction().executeReductionFunction(this.rainbowTable.getHashFunction().MD5(startValue), i);
+        }
+
+        return result;
     }
 
     private String searchForEndValue(BigInteger hashValue){
@@ -47,6 +66,8 @@ public class SearchPassword {
                 }
             }
 
+            this.amountOfRounds = chainLength - counter - 1;
+
             counter++;
         }
 
@@ -60,6 +81,7 @@ public class SearchPassword {
             return true;
         }
 
+        this.amountOfRounds = -1;
         return false;
     }
 }

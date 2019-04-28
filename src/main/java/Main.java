@@ -6,7 +6,7 @@ import java.util.Collections;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        RainbowTable rainbowTable = new RainbowTable(3, 7, 3);
+        RainbowTable rainbowTable = new RainbowTable(2000, 7, 2000);
         rainbowTable.initialize();
 
         rainbowTable.creaetRainbowTable();
@@ -16,6 +16,6 @@ public class Main {
 
         SearchPassword searchPassword = new SearchPassword(rainbowTable);
 
-        System.out.println("calculatedEndValue: " + searchPassword.searchForPassword(new BigInteger("29c3eea3f305d6b823f562ac4be35217", 16)));
+        System.out.println("calculated Password: " + searchPassword.searchForPassword(new BigInteger("1d56a37fb6b08aa709fe90e12ca59e12", 16)));
     }
 }
