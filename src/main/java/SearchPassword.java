@@ -12,11 +12,11 @@ public class SearchPassword {
     }
 
     public String searchForPassword(BigInteger hashValue){
-        if(!searchForEndValue(hashValue).equals(notFound)){
+//        if(!searchForEndValue(hashValue).equals(notFound)){
+//
+//        }
 
-        }
-
-        return null;
+        return searchForEndValue(hashValue);
     }
 
     private String searchForEndValue(BigInteger hashValue){

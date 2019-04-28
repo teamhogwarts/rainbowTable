@@ -36,7 +36,6 @@ public class RainbowTable {
 
         for (int i = 0; i < this.chainLength; i++) {
             result = reductionFunction.executeReductionFunction(hashFunction.MD5(result), i);
-            System.out.println(result);
         }
 
         return result;
