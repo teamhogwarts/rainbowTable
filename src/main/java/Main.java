@@ -13,7 +13,9 @@ public class Main {
         BiMap<String, String > rain = rainbowTable.getRainbowTable();
 
         // rain.keySet().forEach(key -> System.out.println("Key: " + key + " : " + "Value: " + rain.get(key)));
-        String hashValue = "1d56a37fb6b08aa709fe90e12ca59e12";
+        String hashValue = "1d56a37fb6b08aa709fe90e12ca59e12"; // vogt
+        //String hashValue = "12e2feb5a0feccf82a8d4172a3bd51c3";
+
         SearchPassword searchPassword = new SearchPassword(rainbowTable);
         String password = searchPassword.searchForPassword(new BigInteger(hashValue, 16));
 
