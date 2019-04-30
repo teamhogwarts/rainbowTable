@@ -1,5 +1,11 @@
 import java.util.*;
 
+/**
+ * Programmieraufgabe Rainbow-Table
+ * krysi FS 2019
+ *
+ * @author Pascal Andermatt, Benjamin Brodwolf, Nadia Kramer
+ */
 public class PasswordCreator {
 
     private int passwordLength;
@@ -24,9 +30,9 @@ public class PasswordCreator {
 
         StringBuilder passwordBuilder;
         for (int i = 0; i < amount; i++) {
-            passwordBuilder = new StringBuilder() ;
+            passwordBuilder = new StringBuilder();
 
-            for (int j = this.passwordLength -1 ; j >= 0; j--){
+            for (int j = this.passwordLength - 1; j >= 0; j--) {
 
                 passwordBuilder.append(calculateCharacter(i, sizeZ, j));
             }
@@ -35,7 +41,7 @@ public class PasswordCreator {
         }
     }
 
-    private char calculateCharacter(int i, int sizeZ, int pow){
+    private char calculateCharacter(int i, int sizeZ, int pow) {
         return z[(i / (int) Math.pow(sizeZ, pow)) % sizeZ];
     }
 

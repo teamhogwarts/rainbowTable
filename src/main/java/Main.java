@@ -1,7 +1,12 @@
-import com.google.common.collect.BiMap;
-
 import java.math.BigInteger;
 
+
+/**
+ * Programmieraufgabe Rainbow-Table
+ * krysi FS 2019
+ *
+ * @author Pascal Andermatt, Benjamin Brodwolf, Nadia Kramer
+ */
 public class Main {
     public static void main(String[] args) throws Exception {
 
@@ -14,8 +19,8 @@ public class Main {
         SearchPassword searchPassword = new SearchPassword(rainbowTable);
         String password = searchPassword.searchForPassword(new BigInteger(hashValue, 16));
 
-        System.out.println("Hashwert: " + hashValue);
-        System.out.println("calculated Password: " + password);
-        System.out.println("passwort gehasht: " + rainbowTable.getHashFunction().MD5(password).toString(16));
+        System.out.println("hash value: " + hashValue);
+        System.out.println("calculated password: " + password);
+        System.out.println("hashed password: " + rainbowTable.getHashFunction().executeHashFunctionMD5(password).toString(16));
     }
 }

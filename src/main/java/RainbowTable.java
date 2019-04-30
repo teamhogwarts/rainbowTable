@@ -1,11 +1,18 @@
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Programmieraufgabe Rainbow-Table
+ * krysi FS 2019
+ *
+ * @author Pascal Andermatt, Benjamin Brodwolf, Nadia Kramer
+ */
 public class RainbowTable {
 
-    private  int chainLength;
-    private  int passwordAmount;
+    private int chainLength;
+    private int passwordAmount;
     private BiMap<String, String> rainbowTable;
     private HashFunction hashFunction;
     private ReductionFunction reductionFunction;
@@ -25,17 +32,16 @@ public class RainbowTable {
         this.passwordCreator.generatePasswords(this.passwordAmount);
     }
 
-    public void createRainbowTable(){
-
+    public void createRainbowTable() {
         this.passwordCreator.getPasswords().forEach(password ->
                 this.rainbowTable.put(password, this.calcEndValueOfChain(password)));
     }
 
-    private String calcEndValueOfChain(String password){
+    private String calcEndValueOfChain(String password) {
         String result = password;
 
         for (int i = 0; i < this.chainLength; i++) {
-            result = reductionFunction.executeReductionFunction(hashFunction.MD5(result), i);
+            result = reductionFunction.executeReductionFunction(hashFunction.executeHashFunctionMD5(result), i);
         }
 
         return result;
@@ -55,14 +61,6 @@ public class RainbowTable {
 
     public int getChainLength() {
         return chainLength;
-    }
-
-    public int getPasswordAmount() {
-        return passwordAmount;
-    }
-
-    public PasswordCreator getPasswordCreator() {
-        return passwordCreator;
     }
 }
 
