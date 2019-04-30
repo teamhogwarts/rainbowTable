@@ -32,21 +32,22 @@ public class SearchPassword {
         String result = startValue;
 
         for (int i = 0; i < this.amountOfRounds; i++) {
-           result = this.rainbowTable.getReductionFunction().executeReductionFunction(this.rainbowTable.getHashFunction().MD5(startValue), i);
+           result = this.rainbowTable.getReductionFunction().executeReductionFunction(this.rainbowTable.getHashFunction().MD5(result), i);
         }
 
         return result;
     }
 
     private String searchForEndValue(BigInteger hashValue){
-        int sizeOfRainbowTable = rainbowTable.getRainbowTable().size();
+      //  int sizeOfRainbowTable = rainbowTable.getRainbowTable().size();
 
-        boolean found = false;
-        int counter = 0;
-        while (counter < sizeOfRainbowTable && !found){
-            found = checkRow(hashValue);
-            counter++;
-        }
+      //  boolean found = false;
+       // int counter = 0;
+//        while (counter < sizeOfRainbowTable && !found){
+//            found = checkRow(hashValue);
+//            counter++;
+//        }
+        checkRow(hashValue);
 
         return (this.possibleEndValue == null) ? this.notFound : this.possibleEndValue;
     }
@@ -57,7 +58,8 @@ public class SearchPassword {
 
         int counter = 0;
         while (counter < chainLength &&  !this.rainbowTable.getRainbowTable().containsValue(endValue)){
-            int test = chainLength - counter - 1;
+            // int test = chainLength - counter - 1;
+
             endValue = this.rainbowTable.getReductionFunction().executeReductionFunction(hashValue, chainLength - counter - 1);
 
             if (counter != 0){

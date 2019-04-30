@@ -25,7 +25,7 @@ public class RainbowTable {
         this.passwordCreator.generatePasswords(this.passwordAmount);
     }
 
-    public void creaetRainbowTable(){
+    public void createRainbowTable(){
 
         this.passwordCreator.getPasswords().forEach(password ->
                 this.rainbowTable.put(password, this.calcEndValueOfChain(password)));

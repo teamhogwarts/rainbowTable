@@ -23,7 +23,7 @@ public class PasswordCreator {
         int sizeZ = z.length;
 
         StringBuilder passwordBuilder;
-        for (int i = 0; i <= amount; i++) {
+        for (int i = 0; i < amount; i++) {
             passwordBuilder = new StringBuilder() ;
 
             for (int j = this.passwordLength -1 ; j >= 0; j--){

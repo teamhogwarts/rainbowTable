@@ -20,6 +20,7 @@ public class HashFunction {
             return new BigInteger(1, this.md5.digest());
         }
         else {
+            System.out.println("Fehler: md5 is null !");
             return null; // TODO: ?????
         }
     }
