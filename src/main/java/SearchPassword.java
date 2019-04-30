@@ -7,24 +7,18 @@ public class SearchPassword {
    private String possibleEndValue;
    private int amountOfRounds;
    private String possiblePassword;
-    // 1d56a37fb6b08aa709fe90e12ca59e12  // HashValue von Vogt
 
     public SearchPassword(RainbowTable rainbowTable) {
         this.rainbowTable = rainbowTable;
     }
 
     public String searchForPassword(BigInteger hashValue){
-//        if(!searchForEndValue(hashValue).equals(notFound)){
-//
-//        }
-        
+
         if(!searchForEndValue(hashValue).equals(this.notFound)){
             String startValue = this.rainbowTable.getRainbowTable().inverse().get(this.possibleEndValue);
             this.possiblePassword = executeHashRoundFunction(startValue);
         }
 
-        // return searchForEndValue(hashValue);
-        
         return possiblePassword == null ? this.notFound : this.possiblePassword;
     }
 
@@ -39,14 +33,6 @@ public class SearchPassword {
     }
 
     private String searchForEndValue(BigInteger hashValue){
-      //  int sizeOfRainbowTable = rainbowTable.getRainbowTable().size();
-
-      //  boolean found = false;
-       // int counter = 0;
-//        while (counter < sizeOfRainbowTable && !found){
-//            found = checkRow(hashValue);
-//            counter++;
-//        }
         checkRow(hashValue);
 
         return (this.possibleEndValue == null) ? this.notFound : this.possibleEndValue;
@@ -58,7 +44,6 @@ public class SearchPassword {
 
         int counter = 0;
         while (counter < chainLength &&  !this.rainbowTable.getRainbowTable().containsValue(endValue)){
-            // int test = chainLength - counter - 1;
 
             endValue = this.rainbowTable.getReductionFunction().executeReductionFunction(hashValue, chainLength - counter - 1);
 
@@ -72,11 +57,6 @@ public class SearchPassword {
 
             counter++;
         }
-
-//        if(counter < chainLength){
-//            this.possibleEndValue = endValue;
-//            return true;
-//        }
 
         if(this.rainbowTable.getRainbowTable().containsValue(endValue)){
             this.possibleEndValue = endValue;
